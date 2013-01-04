@@ -5,8 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/raphael-min.js"></script>
+    <script>
+      jQuery(function(){
+
+        var p = new Raphael(document.getElementById('cvs'), 500, 500);
+        var circle = p.circle(100, 100, 80);
+
+
+      });
+
+    </script>
   </head>
   <body>
     <div id="cvs"></div>
   </body>
+  
 </html>
