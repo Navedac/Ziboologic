@@ -9,9 +9,22 @@
       jQuery(function(){
 
         var p = new Raphael(document.getElementById('cvs'), 500, 500);
-        var circle = p.circle(100, 100, 80);
-
-
+        p.add([
+          {
+            type: "circle",
+            cx: 10,
+            cy: 10,
+            r: 5
+          },
+          {
+            type: "rect",
+            x: 10,
+            y: 10,
+            width: 10,
+            height: 10,
+            fill: "#fc0"
+          }
+        ]);
       });
 
     </script>
