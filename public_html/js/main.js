@@ -9,13 +9,17 @@ var attr = {
   "stroke-width": 1,
   "stroke-linejoin": "round"
 };
+
+var grd = 5; 
   
 var els = {};
 
-
-for (var i = 0; i < 9; i++){
-  els[i] = paper.rect(((i)* 60)+10, 40, 50, 50, 10).attr(attr);
+for (var r=0; r<grd; r++){ // row
+  for (var c=0; c<grd; c++){ // column
+    els[(r*grd)+c] = paper.rect((c*60)+10, (r*60)+10, 50, 50, 10).attr(attr);
+  }
 }
+
   
 var current = null;
 for (var el in els) {
