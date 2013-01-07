@@ -15,7 +15,7 @@ var els={}; // Object collection
 
 for(var r=0; r<grd; r++){ // row
   for(var c=0; c<grd; c++){ // column
-    els[(r*grd)+c] = 
+    els[(r*grd)+c] =  
       pp.rect((c*60)+10, (r*60)+10, 50, 50, 10)
         .attr(att)
         .click(function(){
@@ -30,11 +30,14 @@ for(var r=0; r<grd; r++){ // row
   }
 }
 
+// test pour modifier une propriété
 els[0].attr({"stroke-width": 5});
+// test pour accrocher un évènement
 els[0].click(function(){
-  els[0].attr({"stroke-width": 1});
+  this.attr({"stroke-width": 1});
 });
 
+// test pour une boucle foreach
 for(var el in els){
   els[el].attr({"stroke-width": 3});
 };
