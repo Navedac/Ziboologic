@@ -23,7 +23,7 @@ var gsz=48;     // Grid Size
 var psz=gsz/2;  // pawn size
 var gbd={};     // GameBoarD collection
 var pws={};     // Pawns collection
-var spn=0;      // Index of selected pawn
+var spn;        // Index of selected pawn
 
 for(var r=0; r<grd; r++){   // row
   for(var c=0; c<grd; c++){ // column
@@ -32,6 +32,7 @@ for(var r=0; r<grd; r++){   // row
         .attr(gat)
         .click(function(){
           this.attr({"stroke-width": 1});
+          checkBoard(this.data("idx"));
         })
         .mouseover(function(){
           this.attr({"stroke-width": 3});
@@ -48,10 +49,10 @@ for(var r=0; r<grd; r++){   // row
     pws[i]=  
       pp.circle((c*52)+300, (r*52)+34, psz, psz, 2)
         .attr(pat)
-        .data("idx", i)
+        .data('i', i)
         .click(function(){
           this.attr({"stroke-width": 1});
-          Output(this.data("idx"));
+          selPawn(this.data('i'));
         })
         .mouseover(function(){
           this.attr({"stroke-width": 1});
@@ -74,8 +75,15 @@ for(var r=0; r<grd; r++){   // row
   }
 }
 
-function Output(idx){
-  out.attr({text: pws[idx].data("idx")});
+function selPawn(index){
+  //out.attr({text: pws[index].data('i')});
+  spn=index;
+  out.attr({text:spn});
+}
+
+function checkBoard(index){
+  
+  
 }
 
 
