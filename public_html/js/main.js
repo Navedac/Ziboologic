@@ -10,11 +10,10 @@ var gat={ // grid attributes
   "stroke-width": 2,
   "stroke-linejoin": "round"
 };
-var pat={ // pawn attributes
-  stroke: "brown",
-  "stroke-width": 0,
-  "stroke-linejoin": "round"
-};
+// pawn attributes
+var pat={stroke: "brown","stroke-width": 0};
+var sw0={"stroke-width": 0};
+var sw3={"stroke-width": 3};
 
 var grd=5;      // Grid Size
 var lm=10;      // cvs Left Margin
@@ -32,7 +31,7 @@ for(var r=0; r<grd; r++){   // row
         .attr(gat)
         .click(function(){
           this.attr({"stroke-width": 1});
-          checkBoard(this.data("idx"));
+          checkBoard(this.data('i'));
         })
         .mouseover(function(){
           this.attr({"stroke-width": 3});
@@ -40,8 +39,8 @@ for(var r=0; r<grd; r++){   // row
         .mouseout(function(){
           this.attr({"stroke-width": 2});
         });
-  }
-}
+  };
+};
 
 for(var r=0; r<grd; r++){   // row
   for(var c=0; c<grd; c++){ // column
@@ -72,22 +71,22 @@ for(var r=0; r<grd; r++){   // row
       case 4 :
         pws[i].attr({fill:"gold"}); break;
     };
-  }
-}
-
-function selPawn(obj){
-  for (var el in pws){
-    pws[el].attr({"stroke-width": 0}).data('s',false);
   };
-  obj.attr({"stroke-width": 3}).data('s',true);
-  spn=obj.data('i');
+};
+
+function selPawn(pwn){
+  for (var el in pws){
+    pws[el].attr(sw0).data('s',false);
+  };
+  pwn.attr(sw3).data('s',true);
+  spn=pwn.data('i');
   out.attr({text:spn});
-}
+};
 
 function checkBoard(index){
   
   
-}
+};
 
 
 
