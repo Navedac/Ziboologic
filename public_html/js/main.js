@@ -23,7 +23,7 @@ var gsz=48;     // Grid Size
 var psz=gsz/2;  // pawn size
 var gbd={};     // GameBoarD collection
 var pws={};     // Pawns collection
-var spn;        // Index of selected pawn
+var spn=-1;     // Index of selected pawn
 
 for(var r=0; r<grd; r++){   // row
   for(var c=0; c<grd; c++){ // column
@@ -50,15 +50,15 @@ for(var r=0; r<grd; r++){   // row
       pp.circle((c*52)+300, (r*52)+34, psz, psz, 2)
         .attr(pat)
         .data('i', i)
+        .data('s',false)
         .click(function(){
-          this.attr({"stroke-width": 1});
-          selPawn(this.data('i'));
+          selPawn(this);
         })
         .mouseover(function(){
-          this.attr({"stroke-width": 1});
+          // this.attr({"stroke-width": 1});
         })
         .mouseout(function(){
-          this.attr({"stroke-width": 0});
+          // this.attr({"stroke-width": 0});
         });
     switch(r){
       case 0 :
@@ -75,9 +75,12 @@ for(var r=0; r<grd; r++){   // row
   }
 }
 
-function selPawn(index){
-  //out.attr({text: pws[index].data('i')});
-  spn=index;
+function selPawn(obj){
+  for (var el in pws){
+    pws[el].attr({"stroke-width": 0}).data('s',false);
+  };
+  obj.attr({"stroke-width": 3}).data('s',true);
+  spn=obj.data('i');
   out.attr({text:spn});
 }
 
