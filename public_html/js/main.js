@@ -14,23 +14,25 @@ var gat={ // grid attributes
 var pat={stroke: "brown","stroke-width": 0};
 var sw0={"stroke-width": 0};
 var sw3={"stroke-width": 3};
+// colors
+var fRed={fill:"red"};
 
 var grd=5;      // Grid Size
 var lm=10;      // cvs Left Margin
 var tm=10;      // cvs Top Margin
 var gsz=48;     // Grid Size
 var psz=gsz/2;  // pawn size
-var gbd={};     // GameBoarD collection
-var pws={};     // Pawns collection
+var gbd={};     // GameBoard collection de cellule (cel)
+var pws={};     // Pawns collection de pawn (pwn)
 var spn=-1;     // Index of selected pawn
 
 for(var r=0; r<grd; r++){   // row
   for(var c=0; c<grd; c++){ // column
-    gbd[(r*grd)+c] =  
+    gbd[(r*grd)+c] =
       pp.rect((c*52)+lm, (r*52)+tm, gsz, gsz, 2)
         .attr(gat)
         .click(function(){
-          this.attr({"stroke-width": 1});
+          // this.attr({"stroke-width": 1});
           checkBoard(this.data('i'));
         })
         .mouseover(function(){
@@ -45,7 +47,7 @@ for(var r=0; r<grd; r++){   // row
 for(var r=0; r<grd; r++){   // row
   for(var c=0; c<grd; c++){ // column
     var i=(r*grd)+c;
-    pws[i]=  
+    pws[i]=
       pp.circle((c*52)+300, (r*52)+34, psz, psz, 2)
         .attr(pat)
         .data('i', i)
@@ -75,17 +77,17 @@ for(var r=0; r<grd; r++){   // row
 };
 
 function selPawn(pwn){
-  for (var el in pws){
-    pws[el].attr(sw0).data('s',false);
+  for (var k in pws){
+    pws[k].attr(sw0).data('s',false);
   };
   pwn.attr(sw3).data('s',true);
   spn=pwn.data('i');
   out.attr({text:spn});
 };
 
-function checkBoard(index){
-  
-  
+function checkBoard(cel){
+
+
 };
 
 
