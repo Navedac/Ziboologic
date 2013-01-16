@@ -25,15 +25,18 @@ var psz=gsz/2;  // pawn size
 var gbd={};     // GameBoard collection de cellule (cel)
 var pws={};     // Pawns collection de pawn (pwn)
 var spn=-1;     // Index of selected pawn
+var cel=-1;     // Index of Clicked cel of gameBoard
 
 for(var r=0; r<grd; r++){   // row
   for(var c=0; c<grd; c++){ // column
-    gbd[(r*grd)+c] =
+    var i=(r*grd)+c;
+    gbd[i] =
       pp.rect((c*52)+lm, (r*52)+tm, gsz, gsz, 2)
         .attr(gat)
+        .data('i',i)
         .click(function(){
           // this.attr({"stroke-width": 1});
-          checkBoard(this.data('i'));
+          checkBoard(this);
         })
         .mouseover(function(){
           this.attr({"stroke-width": 3});
@@ -50,7 +53,7 @@ for(var r=0; r<grd; r++){   // row
     pws[i]=
       pp.circle((c*52)+300, (r*52)+34, psz, psz, 2)
         .attr(pat)
-        .data('i', i)
+        .data('i',i)
         .data('s',false)
         .click(function(){
           selPawn(this);
@@ -82,12 +85,14 @@ function selPawn(pwn){
   };
   pwn.attr(sw3).data('s',true);
   spn=pwn.data('i');
-  out.attr({text:spn});
+  out.attr({text:spn}); // debug
+
 };
 
-function checkBoard(cel){
-
-
+function checkBoard(obj){
+  cel=obj.data('i');
+  out.attr({text:cel}); // debug
+  pws[spn].animate({transform: "t-100,0"}, 1000, "bounce");
 };
 
 
