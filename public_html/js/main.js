@@ -92,7 +92,8 @@ function selPawn(pwn){
 function checkBoard(obj){
   cel=obj.data('i');
   out.attr({text:cel}); // debug
-  pws[spn].animate({transform: "t-100,0"}, 1000, "bounce");
+  // var x = obj.attr('x')+psz;
+  pws[spn].animate({cx: obj.attr('x')+psz}, 300, "bounce");
 };
 
 
