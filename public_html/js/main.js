@@ -33,7 +33,7 @@ function initBoard(){
   for(var r=0; r<grd; r++){   // row
     for(var c=0; c<grd; c++){ // column
       var i=(r*grd)+c;
-      gbd[i] =
+      gbd[i]=
         paper.rect((c*52)+lm, (r*52)+tm, gsz, gsz, 2)
           .attr(gat)
           .data('i',i)
@@ -87,7 +87,6 @@ function selPawn(pwn){
 
 function checkBoard(obj){
   unselPws();
-  
   cel=obj.data('i');
   out.attr({text:cel}); // debug
   pws[spn].animate({cx: obj.attr('x')+psz,cy: obj.attr('y')+psz}, 300, "bounce").data('s',true);
