@@ -79,18 +79,19 @@ function initBoard(){
 };
 
 function selPawn(pwn){
-  unselPws();
-  pwn.attr(sw3).data('s',true);
-  spn=pwn.data('i');
+  switch (pwn.data('s')){
+    case false : unselPws(); pwn.attr(sw3); spn=pwn.data('i'); break;
+  };
   // out.attr({text:spn}); // debug
-
 };
 
 function checkBoard(obj){
   unselPws();
+  
   cel=obj.data('i');
   out.attr({text:cel}); // debug
-  pws[spn].animate({cx: obj.attr('x')+psz,cy: obj.attr('y')+psz}, 300, "bounce");
+  pws[spn].animate({cx: obj.attr('x')+psz,cy: obj.attr('y')+psz}, 300, "bounce").data('s',true);
+  spn=-1;
 };
 
 function unselPws(){
