@@ -27,73 +27,78 @@ var pws={};     // Pawns collection de pawn (pwn)
 var spn=-1;     // Index of selected pawn
 var cel=-1;     // Index of Clicked cel of gameBoard
 
-for(var r=0; r<grd; r++){   // row
-  for(var c=0; c<grd; c++){ // column
-    var i=(r*grd)+c;
-    gbd[i] =
-      paper.rect((c*52)+lm, (r*52)+tm, gsz, gsz, 2)
-        .attr(gat)
-        .data('i',i)
-        .click(function(){
-          // this.attr({"stroke-width": 1});
-          checkBoard(this);
-        })
-        .mouseover(function(){
-          this.attr({"stroke-width": 3});
-        })
-        .mouseout(function(){
-          this.attr({"stroke-width": 2});
-        });
-  };
-};
+initBoard();
 
-for(var r=0; r<grd; r++){   // row
-  for(var c=0; c<grd; c++){ // column
-    var i=(r*grd)+c;
-    pws[i]=
-      paper.circle((c*52)+300, (r*52)+34, psz, psz, 2)
-        .attr(pat)
-        .data('i',i)
-        .data('s',false)
-        .click(function(){
-          selPawn(this);
-        })
-        .mouseover(function(){
-          // this.attr({"stroke-width": 1});
-        })
-        .mouseout(function(){
-          // this.attr({"stroke-width": 0});
-        });
-    switch(r){
-      case 0 :
-        pws[i].attr({"fill":"red"}); break;
-      case 1 :
-        pws[i].attr({"fill":"purple"}); break;
-      case 2 :
-        pws[i].attr({"fill":"black"}); break;
-      case 3 :
-        pws[i].attr({"fill":"blue"}); break;
-      case 4 :
-        pws[i].attr({"fill":"gold"}); break;
+function initBoard(){ 
+  for(var r=0; r<grd; r++){   // row
+    for(var c=0; c<grd; c++){ // column
+      var i=(r*grd)+c;
+      gbd[i] =
+        paper.rect((c*52)+lm, (r*52)+tm, gsz, gsz, 2)
+          .attr(gat)
+          .data('i',i)
+          .click(function(){
+            // this.attr({"stroke-width": 1});
+            checkBoard(this);
+          })
+          .mouseover(function(){
+            this.attr({"stroke-width": 3});
+          })
+          .mouseout(function(){
+            this.attr({"stroke-width": 2});
+          });
+    };
+  };
+
+  for(var r=0; r<grd; r++){   // row
+    for(var c=0; c<grd; c++){ // column
+      var i=(r*grd)+c;
+      pws[i]=
+        paper.circle((c*52)+300, (r*52)+34, psz, psz, 2)
+          .attr(pat)
+          .data('i',i)
+          .data('s',false)
+          .click(function(){
+            selPawn(this);
+          })
+          .mouseover(function(){
+            // this.attr({"stroke-width": 1});
+          })
+          .mouseout(function(){
+            // this.attr({"stroke-width": 0});
+          });
+      switch(r){
+        case 0 : pws[i].attr({"fill":"red"}); break;
+        case 1 : pws[i].attr({"fill":"purple"}); break;
+        case 2 : pws[i].attr({"fill":"black"}); break;
+        case 3 : pws[i].attr({"fill":"blue"}); break;
+        case 4 : pws[i].attr({"fill":"gold"}); break;
+      };
     };
   };
 };
 
 function selPawn(pwn){
-  for (var k in pws){
-    pws[k].attr(sw0).data('s',false);
-  };
+  unselPws();
   pwn.attr(sw3).data('s',true);
   spn=pwn.data('i');
-  out.attr({text:spn}); // debug
+  // out.attr({text:spn}); // debug
 
 };
 
 function checkBoard(obj){
+  unselPws();
   cel=obj.data('i');
   out.attr({text:cel}); // debug
   pws[spn].animate({cx: obj.attr('x')+psz,cy: obj.attr('y')+psz}, 300, "bounce");
 };
+
+function unselPws(){
+  for (var k in pws){
+    pws[k].attr(sw0).data('s',false);
+  };
+};
+
 
 
 
@@ -111,7 +116,8 @@ function checkBoard(obj){
   gbd[el].attr({"stroke-width": 3});
 }; */
 
-// to do
-// -> ajouter une function initBoard()
+// to do list
+// -> 
 
 });
+
