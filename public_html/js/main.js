@@ -55,14 +55,13 @@ function initBoard(){
   for(var r=0; r<grd; r++){   // row
     for(var c=0; c<grd; c++){ // column
       var i=(r*grd)+c;
-      pws[i]=
-        paper.circle((c*52)+300, (r*52)+34, psz, psz, 2)
-          .attr(pat)
-          .data('i',i)
-          .data('s',false) // flag selectable ?
-          .click(function(){
-            selPawn(this);
-          });
+      pws[i]=paper.circle((c*52)+300, (r*52)+34, psz, psz, 2)
+        .attr(pat)
+        .data('i',i)
+        .data('s',false) // flag selectable ?
+        .click(function(){
+          selPawn(this);
+        });
       switch(r){
         case 0 : pws[i].attr({"fill":"red"}); break;
         case 1 : pws[i].attr({"fill":"purple"}); break;
