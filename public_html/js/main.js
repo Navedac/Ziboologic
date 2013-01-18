@@ -37,7 +37,7 @@ function initBoard(){
         paper.rect((c*52)+lm, (r*52)+tm, gsz, gsz, 2)
           .attr(gat)
           .data('i',i)
-          .data('s',false)
+          .data('s',false) // flag selectable ?
           .data('c',"empty")
           .click(function(){
             // this.attr({"stroke-width": 1});
@@ -59,10 +59,10 @@ function initBoard(){
         paper.circle((c*52)+300, (r*52)+34, psz, psz, 2)
           .attr(pat)
           .data('i',i)
-          .data('s',false)
+          .data('s',false) // flag selectable ?
           .click(function(){
             selPawn(this);
-          })
+          });
       switch(r){
         case 0 : pws[i].attr({"fill":"red"}); break;
         case 1 : pws[i].attr({"fill":"purple"}); break;
