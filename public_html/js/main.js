@@ -59,9 +59,7 @@ function initBoard(){
         .attr(pat)
         .data('i',i)
         .data('s',false) // flag selectable ?
-        .click(function(){
-          selPawn(this);
-        });
+        .click(function(){selPawn(this);});
       switch(r){
         case 0 : pws[i].attr({"fill":"red"}); break;
         case 1 : pws[i].attr({"fill":"purple"}); break;
@@ -110,23 +108,6 @@ function unselPws(){
     pws[k].attr(sw0);
   };
 };
-
-
-
-
-// test pour modifier une propriété
-// gbd[0].attr({"stroke-width": 1});
-// pws[0].attr({cx:34});
-// pws[0].attr({fill:"red"});
-// test pour accrocher un évènement
-/* gbd[0].click(function(){
-  this.attr({"stroke-width": 1});
-}); */
-
-// test pour une boucle foreach
-/* for(var el in gbd){
-  gbd[el].attr({"stroke-width": 3});
-}; */
 
 // to do list
 // -> 
