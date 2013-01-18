@@ -37,6 +37,8 @@ function initBoard(){
         paper.rect((c*52)+lm, (r*52)+tm, gsz, gsz, 2)
           .attr(gat)
           .data('i',i)
+          .data('s',false)
+          .data('c',"empty")
           .click(function(){
             // this.attr({"stroke-width": 1});
             checkBoard(this);
@@ -61,12 +63,6 @@ function initBoard(){
           .click(function(){
             selPawn(this);
           })
-          .mouseover(function(){
-            // this.attr({"stroke-width": 1});
-          })
-          .mouseout(function(){
-            // this.attr({"stroke-width": 0});
-          });
       switch(r){
         case 0 : pws[i].attr({"fill":"red"}); break;
         case 1 : pws[i].attr({"fill":"purple"}); break;
@@ -80,22 +76,39 @@ function initBoard(){
 
 function selPawn(pwn){
   switch (pwn.data('s')){
-    case false : unselPws(); pwn.attr(sw3); spn=pwn.data('i'); break;
+    case false : 
+      unselPws(); 
+      pwn.attr(sw3); 
+      spn=pwn.data('i');
+      out.attr({text:spn});
+      break;
   };
-  // out.attr({text:spn}); // debug
 };
 
 function checkBoard(obj){
-  unselPws();
-  cel=obj.data('i');
-  out.attr({text:cel}); // debug
-  pws[spn].animate({cx: obj.attr('x')+psz,cy: obj.attr('y')+psz}, 300, "bounce").data('s',true);
-  spn=-1;
+  switch (obj.data('s')){
+    case false :
+      obj.data('s',true);
+      unselPws();
+      cel=obj.data('i');
+      if(spn>-1){
+        pws[spn].animate({cx:obj.attr('x')+psz,cy:obj.attr('y')+psz},300,"bounce").data('s',true);
+        obj.data('c',pws[spn].attr("fill"));
+        spn=-1;
+      };
+      break;
+  };
+  switch(cel){
+    case 0 :
+      out.attr({text:gbd[cel].data('c')}); // debug
+    case 1 :
+  };
+  
 };
 
 function unselPws(){
   for (var k in pws){
-    pws[k].attr(sw0).data('s',false);
+    pws[k].attr(sw0);
   };
 };
 
