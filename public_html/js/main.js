@@ -27,9 +27,13 @@ var pws={};     // Pawns collection de pawn (pwn)
 var spn=-1;     // Index of selected pawn
 var cel=-1;     // Index of Clicked cel of gameBoard
 
-initBoard();
+var gameLoss=false; // Flag
 
-function initBoard(){ 
+drawBoard();
+drawPawns();
+
+
+function drawBoard(){
   for(var r=0; r<grd; r++){   // row
     for(var c=0; c<grd; c++){ // column
       var i=(r*grd)+c;
@@ -50,8 +54,10 @@ function initBoard(){
             this.attr({"stroke-width": 2});
           });
     };
-  };
+  };  
+};
 
+function drawPawns(){
   for(var r=0; r<grd; r++){   // row
     for(var c=0; c<grd; c++){ // column
       var i=(r*grd)+c;
@@ -68,7 +74,7 @@ function initBoard(){
         case 4 : pws[i].attr({"fill":"gold"}); break;
       };
     };
-  };
+  };  
 };
 
 function selPawn(pwn){
@@ -95,13 +101,189 @@ function checkBoard(obj){
       };
       break;
   };
-  switch(cel){
+  horizCheck(cel); 
+  vertiCheck(cel);
+  diagoCheck(cel);
+  // check du flag gameLoss
+  if (gameLoss){
+    out.attr({text:'perdu'});
+  };
+};
+
+function horizCheck(index){
+  switch(index){
     case 0 :
-      out.attr({text:gbd[cel].data('c')}); // debug
+    case 5 :
+    case 10:
+    case 15:
+    case 20:     
+      if(gbd[index].data('c')===gbd[index+1].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+2].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index+3].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+4].data('c')){gameLoss=true;break;}; 
+      break;
     case 1 :
+    case 6 :
+    case 11:
+    case 16:
+    case 21:
+      if(gbd[index].data('c')===gbd[index-1].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+1].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index+2].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+3].data('c')){gameLoss=true;break;};
+      break;
+    case 2 :
+    case 7 :
+    case 12:
+    case 17:
+    case 22:
+      if(gbd[index].data('c')===gbd[index-2].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index-1].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index+1].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+2].data('c')){gameLoss=true;break;};
+      break;
+    case 3 :
+    case 8 :
+    case 13:
+    case 18:
+    case 23:
+      if(gbd[index].data('c')===gbd[index-3].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index-2].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index-1].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+1].data('c')){gameLoss=true;break;};
+      break;
+    case 4 :
+    case 9 :
+    case 14:
+    case 19:
+    case 24:
+      if(gbd[index].data('c')===gbd[index-4].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index-3].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index-2].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index-1].data('c')){gameLoss=true;break;};
+      break;      
+  };
+};
+
+function vertiCheck(index){
+  switch(index){
+    case 0 :
+    case 1 :
+    case 2:
+    case 3:
+    case 4:     
+      if(gbd[index].data('c')===gbd[index+5].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+10].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index+15].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+20].data('c')){gameLoss=true;break;}; 
+      break;
+    case 5 :
+    case 6 :
+    case 7:
+    case 8:
+    case 9:     
+      if(gbd[index].data('c')===gbd[index-5].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+5].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index+10].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+15].data('c')){gameLoss=true;break;}; 
+      break;
+    case 10 :
+    case 11 :
+    case 12:
+    case 13:
+    case 14:     
+      if(gbd[index].data('c')===gbd[index-10].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index-5].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index+5].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+10].data('c')){gameLoss=true;break;}; 
+      break;
+    case 15 :
+    case 16 :
+    case 17:
+    case 18:
+    case 19:     
+      if(gbd[index].data('c')===gbd[index-15].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index-10].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index-5].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index+5].data('c')){gameLoss=true;break;}; 
+      break;
+    case 20 :
+    case 21 :
+    case 22:
+    case 23:
+    case 24:     
+      if(gbd[index].data('c')===gbd[index-20].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index-15].data('c')){gameLoss=true;break;};
+      if(gbd[index].data('c')===gbd[index-10].data('c')){gameLoss=true;break;}; 
+      if(gbd[index].data('c')===gbd[index-5].data('c')){gameLoss=true;break;}; 
+      break;    
   };
   
 };
+
+function diagoCheck(index){
+  switch(index){
+    case 0 :
+      if(gbd[0].data('c')===gbd[6].data('c')){gameLoss=true;break;}; 
+      if(gbd[0].data('c')===gbd[12].data('c')){gameLoss=true;break;};
+      if(gbd[0].data('c')===gbd[18].data('c')){gameLoss=true;break;}; 
+      if(gbd[0].data('c')===gbd[24].data('c')){gameLoss=true;break;}; 
+      break;
+    case 6 :
+      if(gbd[6].data('c')===gbd[0].data('c')){gameLoss=true;break;}; 
+      if(gbd[6].data('c')===gbd[12].data('c')){gameLoss=true;break;};
+      if(gbd[6].data('c')===gbd[18].data('c')){gameLoss=true;break;}; 
+      if(gbd[6].data('c')===gbd[24].data('c')){gameLoss=true;break;}; 
+      break;
+    case 12 :
+      if(gbd[12].data('c')===gbd[0].data('c')){gameLoss=true;break;}; 
+      if(gbd[12].data('c')===gbd[6].data('c')){gameLoss=true;break;};
+      if(gbd[12].data('c')===gbd[18].data('c')){gameLoss=true;break;}; 
+      if(gbd[12].data('c')===gbd[24].data('c')){gameLoss=true;break;};
+      if(gbd[12].data('c')===gbd[4].data('c')){gameLoss=true;break;}; 
+      if(gbd[12].data('c')===gbd[8].data('c')){gameLoss=true;break;};
+      if(gbd[12].data('c')===gbd[16].data('c')){gameLoss=true;break;}; 
+      if(gbd[12].data('c')===gbd[20].data('c')){gameLoss=true;break;}; 
+      break;
+    case 18 :
+      if(gbd[18].data('c')===gbd[0].data('c')){gameLoss=true;break;}; 
+      if(gbd[18].data('c')===gbd[6].data('c')){gameLoss=true;break;};
+      if(gbd[18].data('c')===gbd[12].data('c')){gameLoss=true;break;}; 
+      if(gbd[18].data('c')===gbd[24].data('c')){gameLoss=true;break;}; 
+      break;
+    case 24 :
+      if(gbd[24].data('c')===gbd[0].data('c')){gameLoss=true;break;}; 
+      if(gbd[24].data('c')===gbd[6].data('c')){gameLoss=true;break;};
+      if(gbd[24].data('c')===gbd[12].data('c')){gameLoss=true;break;}; 
+      if(gbd[24].data('c')===gbd[18].data('c')){gameLoss=true;break;}; 
+      break;
+    case 4 :
+      if(gbd[4].data('c')===gbd[8].data('c')){gameLoss=true;break;}; 
+      if(gbd[4].data('c')===gbd[12].data('c')){gameLoss=true;break;};
+      if(gbd[4].data('c')===gbd[16].data('c')){gameLoss=true;break;}; 
+      if(gbd[4].data('c')===gbd[20].data('c')){gameLoss=true;break;}; 
+      break;
+    case 8 :
+      if(gbd[8].data('c')===gbd[4].data('c')){gameLoss=true;break;}; 
+      if(gbd[8].data('c')===gbd[12].data('c')){gameLoss=true;break;};
+      if(gbd[8].data('c')===gbd[16].data('c')){gameLoss=true;break;}; 
+      if(gbd[8].data('c')===gbd[20].data('c')){gameLoss=true;break;}; 
+      break;
+    case 16 :
+      if(gbd[16].data('c')===gbd[4].data('c')){gameLoss=true;break;}; 
+      if(gbd[16].data('c')===gbd[8].data('c')){gameLoss=true;break;};
+      if(gbd[16].data('c')===gbd[12].data('c')){gameLoss=true;break;}; 
+      if(gbd[16].data('c')===gbd[20].data('c')){gameLoss=true;break;}; 
+      break;
+    case 20 :
+      if(gbd[20].data('c')===gbd[4].data('c')){gameLoss=true;break;}; 
+      if(gbd[20].data('c')===gbd[8].data('c')){gameLoss=true;break;};
+      if(gbd[20].data('c')===gbd[12].data('c')){gameLoss=true;break;}; 
+      if(gbd[20].data('c')===gbd[16].data('c')){gameLoss=true;break;}; 
+      break;  
+  };
+};
+
 
 function unselPws(){
   for (var k in pws){
