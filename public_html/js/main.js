@@ -101,16 +101,16 @@ function checkBoard(obj){
       };
       break;
   };
-  horizCheck(cel); 
-  vertiCheck(cel);
-  diagoCheck(cel);
+  rowCheck(cel); 
+  colCheck(cel);
+  diaCheck(cel);
   // check du flag gameLoss
   if (gameLoss){
     out.attr({text:'perdu'});
   };
 };
 
-function horizCheck(index){
+function rowCheck(index){
   switch(index){
     case 0 :
     case 5 :
@@ -165,7 +165,7 @@ function horizCheck(index){
   };
 };
 
-function vertiCheck(index){
+function colCheck(index){
   switch(index){
     case 0 :
     case 1 :
@@ -221,7 +221,7 @@ function vertiCheck(index){
   
 };
 
-function diagoCheck(index){
+function diaCheck(index){
   switch(index){
     case 0 :
       if(gbd[0].data('c')===gbd[6].data('c')){gameLoss=true;break;}; 
