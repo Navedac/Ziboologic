@@ -28,6 +28,7 @@ var spn=-1;     // Index of selected pawn
 var cel=-1;     // Index of Clicked cel of gameBoard
 
 var gameLoss=false; // Flag
+var gameMove=-1;
 
 drawBoard();
 drawPawns();
@@ -108,8 +109,9 @@ function checkBoard(obj){
   if (gameLoss){
     out.attr({text:'perdu'});
   }else{
-    for (var k in gbd){
-      //gbd[k].attr(sw0);
+    gameMove ++;
+    if (gameMove>23){
+      out.attr({text:'gagné'});
     };
   };
   
@@ -185,7 +187,6 @@ function colCheck(index){
       if(c===gbd[index-5].data('c')){gameLoss=true;break;}; 
       break;    
   };
-  
 };
 
 function diaCheck(index){
