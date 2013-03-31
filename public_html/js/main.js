@@ -27,7 +27,7 @@ var pws={};     // Pawns collection de pawn (pwn)
 var spn=-1;     // Index of selected pawn
 var cel=-1;     // Index of Clicked cel of gameBoard
 
-var gL=false; // Flag
+var gL=false;   // Flag Game Loss
 var gameMove=-1;
 
 drawBoard();
@@ -117,81 +117,81 @@ function checkBoard(obj){
   
 };
 
-function rowCheck(index){
-  var c=(gbd[index].data('c'));
-  switch(index){
+function rowCheck(idx){
+  var c=(gbd[idx].data('c'));
+  switch(idx){
     case 0: case 5: case 10: case 15: case 20:     
-      if(c===gbd[index+1].data('c')){gL=true;break;}; 
-      if(c===gbd[index+2].data('c')){gL=true;break;};
-      if(c===gbd[index+3].data('c')){gL=true;break;}; 
-      if(c===gbd[index+4].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+1].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+2].data('c')){gL=true;break;};
+      if(c===gbd[idx+3].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+4].data('c')){gL=true;break;}; 
       break;
     case 1: case 6: case 11: case 16: case 21:
-      if(c===gbd[index-1].data('c')){gL=true;break;}; 
-      if(c===gbd[index+1].data('c')){gL=true;break;};
-      if(c===gbd[index+2].data('c')){gL=true;break;}; 
-      if(c===gbd[index+3].data('c')){gL=true;break;};
+      if(c===gbd[idx-1].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+1].data('c')){gL=true;break;};
+      if(c===gbd[idx+2].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+3].data('c')){gL=true;break;};
       break;
     case 2: case 7: case 12: case 17: case 22:
-      if(c===gbd[index-2].data('c')){gL=true;break;}; 
-      if(c===gbd[index-1].data('c')){gL=true;break;};
-      if(c===gbd[index+1].data('c')){gL=true;break;}; 
-      if(c===gbd[index+2].data('c')){gL=true;break;};
+      if(c===gbd[idx-2].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-1].data('c')){gL=true;break;};
+      if(c===gbd[idx+1].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+2].data('c')){gL=true;break;};
       break;
     case 3: case 8: case 13: case 18: case 23:
-      if(c===gbd[index-3].data('c')){gL=true;break;}; 
-      if(c===gbd[index-2].data('c')){gL=true;break;};
-      if(c===gbd[index-1].data('c')){gL=true;break;}; 
-      if(c===gbd[index+1].data('c')){gL=true;break;};
+      if(c===gbd[idx-3].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-2].data('c')){gL=true;break;};
+      if(c===gbd[idx-1].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+1].data('c')){gL=true;break;};
       break;
     case 4: case 9: case 14: case 19: case 24:
-      if(c===gbd[index-4].data('c')){gL=true;break;}; 
-      if(c===gbd[index-3].data('c')){gL=true;break;};
-      if(c===gbd[index-2].data('c')){gL=true;break;}; 
-      if(c===gbd[index-1].data('c')){gL=true;break;};
+      if(c===gbd[idx-4].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-3].data('c')){gL=true;break;};
+      if(c===gbd[idx-2].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-1].data('c')){gL=true;break;};
       break;      
   };
 };
 
-function colCheck(index){
-  var c=(gbd[index].data('c'));
-  switch(index){
+function colCheck(idx){
+  var c=(gbd[idx].data('c'));
+  switch(idx){
     case 0: case 1: case 2: case 3: case 4:     
-      if(c===gbd[index+5].data('c')){gL=true;break;}; 
-      if(c===gbd[index+10].data('c')){gL=true;break;};
-      if(c===gbd[index+15].data('c')){gL=true;break;}; 
-      if(c===gbd[index+20].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+5].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+10].data('c')){gL=true;break;};
+      if(c===gbd[idx+15].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+20].data('c')){gL=true;break;}; 
       break;
     case 5: case 6: case 7: case 8: case 9:     
-      if(c===gbd[index-5].data('c')){gL=true;break;}; 
-      if(c===gbd[index+5].data('c')){gL=true;break;};
-      if(c===gbd[index+10].data('c')){gL=true;break;}; 
-      if(c===gbd[index+15].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-5].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+5].data('c')){gL=true;break;};
+      if(c===gbd[idx+10].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+15].data('c')){gL=true;break;}; 
       break;
     case 10: case 11: case 12: case 13: case 14:     
-      if(c===gbd[index-10].data('c')){gL=true;break;}; 
-      if(c===gbd[index-5].data('c')){gL=true;break;};
-      if(c===gbd[index+5].data('c')){gL=true;break;}; 
-      if(c===gbd[index+10].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-10].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-5].data('c')){gL=true;break;};
+      if(c===gbd[idx+5].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+10].data('c')){gL=true;break;}; 
       break;
     case 15: case 16: case 17: case 18: case 19:     
-      if(c===gbd[index-15].data('c')){gL=true;break;}; 
-      if(c===gbd[index-10].data('c')){gL=true;break;};
-      if(c===gbd[index-5].data('c')){gL=true;break;}; 
-      if(c===gbd[index+5].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-15].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-10].data('c')){gL=true;break;};
+      if(c===gbd[idx-5].data('c')){gL=true;break;}; 
+      if(c===gbd[idx+5].data('c')){gL=true;break;}; 
       break;
     case 20: case 21: case 22: case 23: case 24:     
-      if(c===gbd[index-20].data('c')){gL=true;break;}; 
-      if(c===gbd[index-15].data('c')){gL=true;break;};
-      if(c===gbd[index-10].data('c')){gL=true;break;}; 
-      if(c===gbd[index-5].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-20].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-15].data('c')){gL=true;break;};
+      if(c===gbd[idx-10].data('c')){gL=true;break;}; 
+      if(c===gbd[idx-5].data('c')){gL=true;break;}; 
       break;    
   };
 };
 
-function diaCheck(index){
-  var c=(gbd[index].data('c'));
-  switch(index){
+function diaCheck(idx){
+  var c=(gbd[idx].data('c'));
+  switch(idx){
     case 0 :
       if(c===gbd[6].data('c')){gL=true;break;}; 
       if(c===gbd[12].data('c')){gL=true;break;};
